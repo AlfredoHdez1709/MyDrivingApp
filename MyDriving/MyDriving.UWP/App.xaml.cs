@@ -54,6 +54,8 @@ namespace MyDriving.UWP
 
                 Xamarin.Forms.Forms.Init(e);
 
+                Xamarin.Forms.DependencyService.Register<ObdLibUWP.ObdWrapper>();
+
                 if (e.PreviousExecutionState == ApplicationExecutionState.Terminated)
                 {
                     //TODO: Load state from previously suspended application
