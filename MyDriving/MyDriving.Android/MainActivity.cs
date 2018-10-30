@@ -21,7 +21,11 @@ namespace MyDriving.Droid
             ScreenOrientation = ScreenOrientation.Portrait)]
     public class MainActivity : BaseActivity
     */
-    [Activity(Label = "MyDriving", Icon = "@drawable/ic_launcher", Theme = "@style/MyTheme", ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation, ScreenOrientation = ScreenOrientation.Portrait)]
+    [Activity(Label = "MyDriving", 
+        Icon = "@drawable/ic_launcher", 
+        Theme = "@style/MyTheme", 
+        ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation, 
+        ScreenOrientation = ScreenOrientation.Portrait)]
     public class MainActivity : global::Xamarin.Forms.Platform.Android.FormsAppCompatActivity
     {
         DrawerLayout drawerLayout;

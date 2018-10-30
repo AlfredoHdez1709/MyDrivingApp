@@ -57,7 +57,8 @@ namespace ObdLibAndroid
                 var ba = bluetoothAdapter.BondedDevices;
                 foreach (var bd in ba)
                 {
-                    if (bd.Name.ToLower().Contains("desktop"))
+                    if (bd.Name.ToLower().Contains("desktop") 
+                        || bd.Name.ToLower().Contains("obd"))
                         bluetoothDevice = bd;
                 }
                 if (bluetoothDevice == null)
