@@ -1,0 +1,48 @@
+paquete nuget: Microsoft.Azure.Devices.Client
+
+Interfaces
+* IHubIOT.cs
+
+Services
+* IOTHub
+
+MainActivity 
+descomentar 89
+
+App.xaml.cs UWP
+descomentar 46
+
+MyDriving.DataObjects
+* IOTHubData 
+
+DataStore.Abstractions
+* IBaseStore
+* IHubIOTStore
+* IPhotoStore 
+* IStoreManager
+* ITripPointStore 
+* ITripStore
+
+Paquete nuget: Plugin.EmbeddedResource en los 4 proyectos
+
+DataStore.Mock
+/Stores
+    * BaseStore
+    * IOTHubStore 
+    * PhotoStore 
+    * TripPointStore 
+    * TripStore
+* StoreManager  
+* sampletrip.json
+
+Services/OBDDataProcessor
+Descomentar: 16, 1, 2, 3, 4, 5, 6, 8, 10, 11, 12
+comentar la linea 67 como //1 y reemplazar
+var connectionStr = "colocar la deviceconnectionstring";
+(no la 
+
+ViewModel/ViewModelBase
+Descomentar: 1, 3, comentar lo que no se ocupa
+poner bool useMock = true
+y quitar el otro init que esta vacio
+
