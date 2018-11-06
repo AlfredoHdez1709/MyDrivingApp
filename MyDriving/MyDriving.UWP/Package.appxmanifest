@@ -1,5 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Package xmlns="http://schemas.microsoft.com/appx/manifest/foundation/windows10" xmlns:mp="http://schemas.microsoft.com/appx/2014/phone/manifest" xmlns:uap="http://schemas.microsoft.com/appx/manifest/uap/windows10" IgnorableNamespaces="uap mp">
+<Package
+  xmlns:m2="http://schemas.microsoft.com/appx/2013/manifest"
+  xmlns="http://schemas.microsoft.com/appx/manifest/foundation/windows10" xmlns:mp="http://schemas.microsoft.com/appx/2014/phone/manifest" xmlns:uap="http://schemas.microsoft.com/appx/manifest/uap/windows10" IgnorableNamespaces="uap mp">
   <Identity Name="8754d840-416e-4865-9cf5-2e8b77435e1e" Publisher="CN=178734cd-9f45-4595-b870-248c3c3e9f5e" Version="1.0.0.0" />
   <mp:PhoneIdentity PhoneProductId="ec0cc741-fd3e-485c-81be-68815c480690" PhonePublisherId="00000000-0000-0000-0000-000000000000" />
   <Properties>
@@ -26,5 +28,15 @@
     <Capability Name="internetClient" />
     <DeviceCapability Name="bluetooth" />
     <DeviceCapability Name="location" />
-  </Capabilities>
+
+<DeviceCapability Name="bluetooth.rfcomm">
+  <Device Id="any">
+    <Function Type="serviceId:A502CA9A-2BA5-413C-A4E0-13804E47B38F"/>
+  </Device>
+</DeviceCapability>
+
+ </Capabilities>
+
+
+
 </Package>

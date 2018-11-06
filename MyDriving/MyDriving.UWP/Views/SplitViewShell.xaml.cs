@@ -7,7 +7,7 @@ using MyDriving.UWP.Controls;
 
 namespace MyDriving.UWP.Views
 {
-    // Fix 
+    //TODO: Fix
     public sealed partial class SplitViewShell
     {
         SplitViewButtonContent selectedControl;
@@ -17,7 +17,7 @@ namespace MyDriving.UWP.Views
             InitializeComponent();
             MyDrivingSplitView.Content = frame;
 
-            /*1            frame.Navigated += Frame_Navigated;
+            frame.Navigated += Frame_Navigated;
 
             Current.LabelText = "Current Trip";
             Current.DefaultImageSource =
@@ -42,7 +42,6 @@ namespace MyDriving.UWP.Views
                 new BitmapImage(new Uri("ms-appx:///Assets/SplitView/settings.png", UriKind.Absolute));
             Settings.SelectedImageSource =
                 new BitmapImage(new Uri("ms-appx:///Assets/SplitView/selected_settings.png", UriKind.Absolute));
-                */
         }
 
         private void HamburgerButton_Click(object sender, RoutedEventArgs e)

@@ -12,8 +12,7 @@ using MyDriving.UWP.Views;
 namespace MyDriving.UWP
 {
     //TODO: Corregir HockeyApp y otros
-    //7 sealed partial class App : Application
-    sealed partial class App
+    sealed partial class App : Application
     {
         public App()
         {
@@ -39,14 +38,13 @@ namespace MyDriving.UWP
                 //2 ServiceLocator.Instance.Add<IAuthentication, Authentication>();
                 //3 ServiceLocator.Instance.Add<Utils.Interfaces.ILogger, PlatformLogger>();
                 ServiceLocator.Instance.Add<IOBDDevice, OBDDevice>();
-
                 Xamarin.Forms.DependencyService.Register<ObdLibUWP.ObdWrapper>();
 
                 //4 if (Settings.Current.IsLoggedIn)
                 {
                     //When the first screen of the app is launched after user has logged in, initialize the processor that manages connection to OBD Device and to the IOT Hub
-                    //5 MyDriving.Services.OBDDataProcessor.GetProcessor().Initialize(ViewModel.ViewModelBase.StoreManager);
-                    await MyDriving.Services.OBDDataProcessor.GetProcessor().Initialize();
+                    await MyDriving.Services.OBDDataProcessor.GetProcessor().Initialize(ViewModel.ViewModelBase.StoreManager);
+                    //await MyDriving.Services.OBDDataProcessor.GetProcessor().Initialize();
 
                     // Create the shell and set it to current trip
                     shell = new SplitViewShell(rootFrame);

@@ -1,0 +1,34 @@
+1 ajustar el atributo de MainActivity
+2 ajustar la herencia de MainActivity
+3 linea 444 de FragmentCurrentTrip
+4 linea 90: await MyDriving.Services.OBDDataProcessor.GetProcessor().Initialize();
+5 comentar linea 23 en SplashActivity
+
+
+1 copiar los assets en uwp
+2 agregar carpetas: Fonts, Fonts\CorbertRegular, GetStarted, Login, Logos, SplitView
+3 copiar los assets de cada carpeta
+4 agregar carpeta Resources 
+5 agregar elementos en la carpeta Resources
+6 crear carpeta Converters
+7 agregar las clases a Converters
+8 agregar app.xaml
+
+9 agregar carpeta Controls
+10 crear CirclePercentage.xaml y su code-behind
+11 crear DotsControl.xaml y su code-behind
+12 crear ProfileViewTabControl y su code-behind
+13 crear y su code-behind
+
+14 agregar carpeta Helpers
+15 agregar las clases a Helpers
+16 agregar app.xaml.cs
+
+17 agregar carpeta Views
+18 agregar SplitViewCell.xaml y su code-behind
+19 agregar CurrentTripView.xaml y su code-behind
+20 agregar TripSummaryView.xaml y su code-behind
+
+
+21 set up as startup project
+22 permisos y capabilities: bluetooth y ubicacion

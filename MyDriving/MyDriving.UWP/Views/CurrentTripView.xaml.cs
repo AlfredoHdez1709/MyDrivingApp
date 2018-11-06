@@ -64,9 +64,10 @@ namespace MyDriving.UWP.Views
 
         private void MyMap_Loaded(object sender, RoutedEventArgs e)
         {
-/*2            MyMap.ZoomLevel = 16;
-            MyMap.MapElements.Clear();
-*/        }
+            /*2            MyMap.ZoomLevel = 16;
+                        MyMap.MapElements.Clear();
+            */
+        }
 
         protected override async void OnNavigatedTo(NavigationEventArgs e)
         {
@@ -86,9 +87,10 @@ namespace MyDriving.UWP.Views
             ViewModel.StopTrackingTripCommand.Execute(null);
             Locations?.Clear();
             Locations = null;
-/*3            MyMap.MapElements.Clear();
-            MyMap.Loaded -= MyMap_Loaded;
-*/            StartRecordBtn.Click -= StartRecordBtn_Click;
+            /*3            MyMap.MapElements.Clear();
+                        MyMap.Loaded -= MyMap_Loaded;
+            */
+            StartRecordBtn.Click -= StartRecordBtn_Click;
             ViewModel.PropertyChanged -= OnPropertyChanged;
             SystemNavigationManager systemNavigationManager = SystemNavigationManager.GetForCurrentView();
             systemNavigationManager.BackRequested -= SystemNavigationManager_BackRequested;
@@ -206,7 +208,7 @@ namespace MyDriving.UWP.Views
                 {
                     case ExtendedExecutionResult.Allowed:
                         session = newSession;
-//5                        ViewModel.Geolocator.AllowsBackgroundUpdates = true;
+                        //5 ViewModel.Geolocator.AllowsBackgroundUpdates = true;
                         ViewModel.StartTrackingTripCommand.Execute(null);
 
                         break;
@@ -222,7 +224,7 @@ namespace MyDriving.UWP.Views
             catch (Exception ex)
             {
                 // Sometimes while creating ExtendedExecution session you get Resource not ready exception. 
-//4                Logger.Instance.Report(ex);
+                //4                Logger.Instance.Report(ex);
                 Acr.UserDialogs.UserDialogs.Instance.Alert("Will not be able to execute app in the background.",
                         "Background execution session failed.", "OK");
             }
@@ -329,16 +331,16 @@ namespace MyDriving.UWP.Views
                 MapIcon _carIcon = null;
                 // Find if there is a MapIcon with title Car
 
-/*6                if (MyMap.MapElements != null)
-                {
-                    var mapIcons = MyMap.MapElements.OfType<MapIcon>().ToList();
-                    foreach (var item in mapIcons)
-                    {
-                        if (item.Title == "Car")
-                            _carIcon = item;
-                    }
-                }
-*/
+                /*6                if (MyMap.MapElements != null)
+                                {
+                                    var mapIcons = MyMap.MapElements.OfType<MapIcon>().ToList();
+                                    foreach (var item in mapIcons)
+                                    {
+                                        if (item.Title == "Car")
+                                            _carIcon = item;
+                                    }
+                                }
+                */
                 if (_carIcon == null)
                 {
                     // Car Icon is currently not present. So add it. 
@@ -349,7 +351,7 @@ namespace MyDriving.UWP.Views
                         CollisionBehaviorDesired = MapElementCollisionBehavior.RemainVisible,
                         Title = "Car"
                     };
-//7                    MyMap.MapElements.Add(_carIcon);
+                    //7                    MyMap.MapElements.Add(_carIcon);
                 }
 
                 // Update the icon of the car based on the recording status
@@ -362,7 +364,7 @@ namespace MyDriving.UWP.Views
 
                 // Update the location
                 _carIcon.Location = new Geopoint(basicGeoposition);
-//8                MyMap.Center = _carIcon.Location;
+                //8                MyMap.Center = _carIcon.Location;
 
                 // Add Path if we are recording 
                 DrawPath(basicGeoposition);
@@ -385,7 +387,7 @@ namespace MyDriving.UWP.Views
                     ZIndex = 3,
                     CollisionBehaviorDesired = MapElementCollisionBehavior.RemainVisible
                 };
-//9                MyMap.MapElements.Add(mapStartIcon);
+                //9                MyMap.MapElements.Add(mapStartIcon);
             });
         }
 
@@ -396,9 +398,9 @@ namespace MyDriving.UWP.Views
 
             await Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
             {
-/*10                if (MyMap == null)
-                    return;
-*/
+                /*10                if (MyMap == null)
+                                    return;
+                */
                 if (Locations.Count == 0)
                 {
                     Locations =
@@ -414,26 +416,27 @@ namespace MyDriving.UWP.Views
                     Locations.Add(basicGeoposition);
 
                 // Check if _mapPolyline is already in MapElements
-/*11                var _mapPolyline = MyMap.MapElements.OfType<MapPolyline>().FirstOrDefault();
+                /*11                var _mapPolyline = MyMap.MapElements.OfType<MapPolyline>().FirstOrDefault();
 
-                if (_mapPolyline == null)
-                {
-                    // Polyline does not exist. Create a new path and add it.
-                    _mapPolyline = new MapPolyline
-                    {
-                        StrokeColor = Colors.Red,
-                        StrokeThickness = 3,
-                        Visible = true,
-                        Path = new Geopath(Locations)
-                    };
-                    MyMap.MapElements.Add(_mapPolyline);
-                }
-                else
-                {
-                    // Set the path of the already added polyline to new locations
-                    _mapPolyline.Path = new Geopath(Locations);
-                }
-*/            });
+                                if (_mapPolyline == null)
+                                {
+                                    // Polyline does not exist. Create a new path and add it.
+                                    _mapPolyline = new MapPolyline
+                                    {
+                                        StrokeColor = Colors.Red,
+                                        StrokeThickness = 3,
+                                        Visible = true,
+                                        Path = new Geopath(Locations)
+                                    };
+                                    MyMap.MapElements.Add(_mapPolyline);
+                                }
+                                else
+                                {
+                                    // Set the path of the already added polyline to new locations
+                                    _mapPolyline.Path = new Geopath(Locations);
+                                }
+                */
+            });
         }
 
         private async void UpdateMapView(BasicGeoposition basicGeoposition)
@@ -441,7 +444,7 @@ namespace MyDriving.UWP.Views
             var geoPoint = new Geopoint(basicGeoposition);
             if (!ViewModel.IsBusy)
             {
-//13                await MyMap.TrySetViewAsync(geoPoint);
+                //13                await MyMap.TrySetViewAsync(geoPoint);
             }
         }
 
@@ -461,7 +464,7 @@ namespace MyDriving.UWP.Views
 
         private void ResetTrip()
         {
-//14            MyMap.MapElements.Clear();
+            //14            MyMap.MapElements.Clear();
             Locations?.Clear();
             Locations = null;
             UpdateStats();
@@ -480,7 +483,7 @@ namespace MyDriving.UWP.Views
                     ZIndex = 3,
                     CollisionBehaviorDesired = MapElementCollisionBehavior.RemainVisible
                 };
-//15                MyMap.MapElements.Add(mapEndIcon);
+                //15                MyMap.MapElements.Add(mapEndIcon);
             });
         }
     }

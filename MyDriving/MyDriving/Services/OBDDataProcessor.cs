@@ -9,7 +9,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using MvvmHelpers;
 //15 using MyDriving.AzureClient;
-//16 using MyDriving.DataStore.Abstractions;
+using MyDriving.DataStore.Abstractions;
 
 namespace MyDriving.Services
 {
@@ -20,7 +20,7 @@ namespace MyDriving.Services
         readonly object sendDataLock = new object();
 
         //IOT Hub state
-        //1 IHubIOT iotHub = new IOTHub();
+        IHubIOT iotHub = new IOTHub();
         bool isConnectedToObd;
         bool isInitialized;
         bool isPollingObdDevice;
@@ -30,7 +30,7 @@ namespace MyDriving.Services
         //OBD Device state
         IOBDDevice obdDevice;
         TimeSpan obdEllapsedTime;
-        //2 IStoreManager storeManager;
+        IStoreManager storeManager;
 
         private OBDDataProcessor()
         {
@@ -48,14 +48,14 @@ namespace MyDriving.Services
         }
 
         //Init must be called each time to connect and reconnect to the OBD device
-        //3 public async Task Initialize(IStoreManager storeManager)
-        public async Task Initialize()
+        public async Task Initialize(IStoreManager storeManager)
+        //public async Task Initialize()
         {
             //Ensure that initialization is only performed once
             if (!isInitialized)
             {
                 isInitialized = true;
-                //4 this.storeManager = storeManager;
+                this.storeManager = storeManager;
 
                 //Get platform specific implementation IOBDDevice
                 obdDevice = ServiceLocator.Instance.Resolve<IOBDDevice>();
@@ -64,8 +64,9 @@ namespace MyDriving.Services
                 CrossConnectivity.Current.ConnectivityChanged += Current_ConnectivityChanged;
 
                 //Provision the device with the IOT Hub
-                //5 var connectionStr = await DeviceProvisionHandler.GetHandler().ProvisionDevice();
-                //6 iotHub.Initialize(connectionStr);
+                //1 var connectionStr = await DeviceProvisionHandler.GetHandler().ProvisionDevice();
+                var connectionStr = "";
+                iotHub.Initialize(connectionStr);
 
                 //Check right away if there is any trip data left in the buffer that needs to be sent to the IOT Hub - run this thread in the background
                 SendBufferedDataToIOTHub();
@@ -99,7 +100,7 @@ namespace MyDriving.Services
 
             try
             {
-                //8 await iotHub.SendEvent(packagedBlob);
+                await iotHub.SendEvent(packagedBlob);
             }
             catch (Exception e)
             {
@@ -111,9 +112,9 @@ namespace MyDriving.Services
 
         private async Task AddTripPointToBuffer(string tripDataPointBlob)
         {
-            //10 IOTHubData iotHubData = new IOTHubData { Blob = tripDataPointBlob };
+            IOTHubData iotHubData = new IOTHubData { Blob = tripDataPointBlob };
 
-            //11 await storeManager.IOTHubStore.InsertAsync(iotHubData);
+            await storeManager.IOTHubStore.InsertAsync(iotHubData);
 
             //Try to sending buffered data to the IOT Hub in the background
             SendBufferedDataToIOTHub();
@@ -143,7 +144,7 @@ namespace MyDriving.Services
                 }
             }
 
-            /*12 var iotHubDataBlobs = new List<IOTHubData>(await storeManager.IOTHubStore.GetItemsAsync());
+            var iotHubDataBlobs = new List<IOTHubData>(await storeManager.IOTHubStore.GetItemsAsync());
 
             while (CrossConnectivity.Current.IsConnected && iotHubDataBlobs.Any())
             {
@@ -157,7 +158,7 @@ namespace MyDriving.Services
                 catch (Exception e)
                 {
                     //An exception will be thrown if the data isn't received by the IOT Hub - wait a few seconds and try again
-                    Logger.Instance.Track("Unable to send buffered data to IOT Hub: " + e.Message);
+                    //17 Logger.Instance.Track("Unable to send buffered data to IOT Hub: " + e.Message);
                     await Task.Delay(3000);
                 }
                 finally
@@ -165,7 +166,7 @@ namespace MyDriving.Services
                     iotHubDataBlobs = new List<IOTHubData>(await storeManager.IOTHubStore.GetItemsAsync());
                 }
             }
-            */
+            
             lock (sendDataLock)
             {
                 isSendingBufferData = false;

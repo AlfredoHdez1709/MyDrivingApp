@@ -86,8 +86,8 @@ namespace MyDriving.Droid
 
             SetContentView(LayoutResource);
 
-            //await MyDriving.Services.OBDDataProcessor.GetProcessor().Initialize(ViewModel.ViewModelBase.StoreManager)
-            await MyDriving.Services.OBDDataProcessor.GetProcessor().Initialize();
+            await MyDriving.Services.OBDDataProcessor.GetProcessor().Initialize(ViewModel.ViewModelBase.StoreManager);
+            //await MyDriving.Services.OBDDataProcessor.GetProcessor().Initialize();
 
             Android.Support.V4.App.Fragment fragment = null;
             fragment = FragmentCurrentTrip.NewInstance();

@@ -126,6 +126,9 @@
     <PackageReference Include="Humanizer">
       <Version>2.5.1</Version>
     </PackageReference>
+    <PackageReference Include="Microsoft.Azure.Devices.Client">
+      <Version>1.18.1</Version>
+    </PackageReference>
     <PackageReference Include="Newtonsoft.Json">
       <Version>11.0.2</Version>
     </PackageReference>
@@ -137,6 +140,9 @@
     </PackageReference>
     <PackageReference Include="Xam.Plugin.DeviceInfo">
       <Version>4.0.0.13</Version>
+    </PackageReference>
+    <PackageReference Include="Xam.Plugin.EmbeddedResource">
+      <Version>1.0.1</Version>
     </PackageReference>
     <PackageReference Include="Xam.Plugin.Geolocator">
       <Version>4.5.0.6</Version>

@@ -96,10 +96,10 @@ namespace ObdLibAndroid
                 writer = bluetoothSocket.OutputStream;
 
                 string s;
-                //s = await SendAndReceive("ATZ\r");
-                //s = await SendAndReceive("ATE0\r");
-                //s = await SendAndReceive("ATL1\r");
-                //s = await SendAndReceive("ATSP00\r");
+                s = await SendAndReceive("ATZ\r");
+                s = await SendAndReceive("ATE0\r");
+                s = await SendAndReceive("ATL1\r");
+                s = await SendAndReceive("ATSP00\r");
 
                 PollObd();
 
